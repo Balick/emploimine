@@ -2,10 +2,14 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { Dot, ListFilter, MapPin } from "lucide-react";
 import Image from "next/image";
-//import { scrapeAndStoreJob } from "@/lib/actions";
+import { scrapeAndStoreJob } from "@/lib/actions";
 
 export default async function Posts() {
-  //const data = await scrapeAndStoreJob();
+  const data = await scrapeAndStoreJob();
+
+  if (!data) return null;
+
+  //console.log(data);
 
   return (
     <section>
@@ -22,7 +26,7 @@ export default async function Posts() {
         </Button>
       </div>
       <ul className="flex flex-col gap-4">
-        {Array.from({ length: 10 }).map((_, index) => (
+        {data.map((post, index) => (
           <li
             key={index}
             className="hover:bg-[#fefbfe] py-5 px-[10px] border border-[#f1f1f1] rounded-lg hover:shadow-sm transition-all duration-300"
@@ -43,8 +47,7 @@ export default async function Posts() {
                 <div className="flex flex-col gap-1.5 overflow-hidden">
                   <span>Glencore</span>
                   <h4 className="leading-[13px] font-semibold text-nowrap truncate overflow-hidden">
-                    Ingénieur(e) en sécurité des procédés Ingénieur(e) en
-                    sécurité des procédés
+                    {post.title}
                   </h4>
                   <div className="flex items-center gap-0.5">
                     <span>CDI</span>

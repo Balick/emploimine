@@ -26,6 +26,10 @@ export async function scrapeGlencoreJob() {
     const response = await axios.get(url, options);
     const $ = cheerio.load(response.data);
 
+    const title = $("body").html();
+
+    console.log(title);
+
     // Construct data object with scraped information
     const links = $.extract({
       link: [

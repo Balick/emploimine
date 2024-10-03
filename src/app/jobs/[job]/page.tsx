@@ -1,12 +1,14 @@
 import ShareButtons from "@/components/share-buttons";
 import Sidebar from "@/components/sidebar";
 import { Button } from "@/components/ui/button";
-//import { scrapeGlencoreJobItem } from "@/lib/scraper";
+import { scrapeGlencoreJobItem } from "@/lib/scraper";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
 export default async function Page({ params }: { params: { job: string } }) {
   //const data = await scrapeGlencoreJobItem(params.job);
+
+  //console.log(data);
 
   return (
     <main className="min-h-screen main py-10">
