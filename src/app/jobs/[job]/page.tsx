@@ -1,7 +1,6 @@
 import ShareButtons from "@/components/share-buttons";
 import Sidebar from "@/components/sidebar";
 import { Button } from "@/components/ui/button";
-import { scrapeGlencoreJobItem } from "@/lib/scraper";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 

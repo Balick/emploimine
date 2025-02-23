@@ -8,8 +8,6 @@ import { Button } from "./ui/button";
 export default async function Posts() {
   const data = await scrapeAndStoreJob();
 
-  console.log(data);
-
   return (
     <section>
       <div className="flex items-center justify-between my-[40px]">
@@ -25,7 +23,7 @@ export default async function Posts() {
         </Button>
       </div>
       {data ? (
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-4 min-h-[646px]">
           {data.map((post, index) => (
             <li
               key={index}
@@ -53,9 +51,9 @@ export default async function Posts() {
                       <span>CDI</span>
                       <Dot className="w-5 h-5" />
                       <span className="hidden md:block">
-                        30/09/2024 - 10/10/2024
+                        {post.date} - {post.endDate}
                       </span>
-                      <span className="md:hidden">Lubumbashi</span>
+                      <span className="md:hidden">{post.city}</span>
                     </div>
                   </div>
                 </div>
@@ -67,7 +65,7 @@ export default async function Posts() {
                   <div className="items-center gap-1 flex ">
                     <MapPin className="w-3 h-3" />
                     <span className="font-bold text-xs text-nowrap text-ellipsis">
-                      Lubumbashi
+                      {post.city}
                     </span>
                   </div>
                 </div>
