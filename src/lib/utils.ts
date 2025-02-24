@@ -4,64 +4,27 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-interface DateFormatOptions {
-  locale?: string;
-  timeZone?: string;
-}
-
-export const DateService = {
-  parseDate: (dateString: string): Date | null => {
-    try {
-      // Gestion des formats de date français
-      const cleanedDate = dateString.replace(
-        /(\d{1,2})\s+([a-zA-Zéû]+)\s+(\d{4})/,
-        (_, day, month, year) => {
-          const monthMap: { [key: string]: string } = {
-            janvier: "01",
-            février: "02",
-            mars: "03",
-            avril: "04",
-            mai: "05",
-            juin: "06",
-            juillet: "07",
-            août: "08",
-            septembre: "09",
-            octobre: "10",
-            novembre: "11",
-            décembre: "12",
-          };
-          return `${day.padStart(2, "0")}/${
-            monthMap[month.toLowerCase()]
-          }/${year}`;
-        }
-      );
-
-      return new Date(cleanedDate);
-    } catch (error) {
-      console.error("Erreur de parsing de date:", error);
-      return null;
-    }
-  },
-
-  formatRelativeTime: (date: Date): string => {
+// Ajout de la fonction pour calculer le temps écoulé
+export function getElapsedTime(postDate: string): string {
+  try {
+    // Supposons que postDate est au format "DD/MM/YYYY"
+    const [day, month, year] = postDate.split("/").map(Number);
+    const date = new Date(year, month - 1, day); // month - 1 car les mois commencent à 0 en JavaScript
     const now = new Date();
-    const diff = now.getTime() - date.getTime();
 
-    const minutes = Math.floor(diff / 60000);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
+    const diffInDays = Math.floor(
+      (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24)
+    );
 
-    if (days > 0) return `Posté il y a ${days} jour${days > 1 ? "s" : ""}`;
-    if (hours > 0) return `Posté il y a ${hours} heure${hours > 1 ? "s" : ""}`;
-    return `Posté il y a ${minutes} minute${minutes > 1 ? "s" : ""}`;
-  },
-
-  formatFrenchDate: (date: Date): string => {
-    return date.toLocaleDateString("fr-FR", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    });
-  },
-};
+    if (isNaN(diffInDays)) return "Date inconnue";
+    if (diffInDays === 0) return "Aujourd'hui";
+    if (diffInDays === 1) return "Hier";
+    if (diffInDays < 7) return `Il y a ${diffInDays} jours`;
+    if (diffInDays < 30) return `Il y a ${Math.floor(diffInDays / 7)} semaines`;
+    if (diffInDays < 365) return `Il y a ${Math.floor(diffInDays / 30)} mois`;
+    return `Il y a ${Math.floor(diffInDays / 365)} ans`;
+  } catch (error) {
+    console.error("Erreur lors de la conversion de la date", error);
+    return "Date inconnue";
+  }
+}
