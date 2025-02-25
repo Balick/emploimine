@@ -1,4 +1,5 @@
 import { scrapeAndStoreJob } from "@/lib/actions";
+import { getElapsedTime } from "@/lib/utils";
 import { Dot, ListFilter, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,7 +44,7 @@ export default async function Posts() {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5 overflow-hidden">
-                    <span>Glencore</span>
+                    <span>{post.company}</span>
                     <h4 className="leading-[13px] font-semibold text-nowrap truncate overflow-hidden">
                       {post.title}
                     </h4>
@@ -60,7 +61,7 @@ export default async function Posts() {
 
                 <div className="hidden md:flex flex-col justify-between items-end gap-[20px] w-max flex-none">
                   <span className="text-[#6e6d7a] text-sm">
-                    Posté il y a 2 jours
+                    Posté {getElapsedTime(post.date)}
                   </span>
                   <div className="items-center gap-1 flex ">
                     <MapPin className="w-3 h-3" />
