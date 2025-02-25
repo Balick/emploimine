@@ -1,5 +1,6 @@
 //import { scrapeAndStoreJob } from "@/lib/actions";
-import { getOffers } from "@/lib/actions/get-offers";
+//import { getOffers } from "@/lib/actions/get-offers";
+import { scrapeKCCJobs } from "@/lib/scraper/kcc-jobs";
 import { getElapsedTime } from "@/lib/utils";
 import { Dot, ListFilter, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -8,7 +9,8 @@ import EmptyContent from "./empty-content";
 import { Button } from "./ui/button";
 
 export default async function Posts() {
-  const data = await getOffers(); //scrapeAndStoreJob();
+  const data = await scrapeKCCJobs(); //getOffers();
+  //console.log(data);
 
   return (
     <section>
@@ -32,7 +34,7 @@ export default async function Posts() {
               className="hover:bg-[#fefbfe] py-5 px-[10px] border border-[#f1f1f1] rounded-lg hover:shadow-sm transition-all duration-300"
             >
               <Link
-                href={`/jobs/${post.id}`}
+                href={`/jobs/${post.title}`}
                 className="flex items-center gap-2 justify-between"
               >
                 <div className="flex items-center w-[100%] md:w-[75%]">
