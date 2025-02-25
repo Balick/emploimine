@@ -1,9 +1,10 @@
+import { Job } from "@/types";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
-export default function Sidebar() {
+export default function Sidebar({ data }: { data: Job }) {
   return (
-    <div className="w-full md:max-w-[336px] border border-[#e7e7e9] rounded-[8px] p-[32px]">
+    <div className="w-full md:max-w-[336px] border border-[#e7e7e9] rounded-[8px] p-[32px] sticky top-8 h-[calc(100vh-64px)]">
       <div className="flex flex-col items-center justify-between">
         <div className="w-full mb-4 overflow-hidden flex items-center justify-center">
           <Image
@@ -14,14 +15,9 @@ export default function Sidebar() {
           />
         </div>
         <span className="font-mona leading-[29px] font-bold text-[24px]">
-          Glencore
+          {data.company}
         </span>
-        <a
-          href={
-            "https://glencorejobs.nga.net.au/cp/index.cfm?event=jobs.checkJobDetailsNewApplication&returnToEvent=jobs.listJobs&jobid=005795B0-F16A-4D61-9E59-B1E301498D0A&CurATC=Africa&CurBID=0F32712B%2DBC67%2D4CD9%2D988D%2D9DB401357A6D&JobListID=22FC4F47%2DE994%2D46A3%2DB8C9%2D9BC901269F43&jobsListKey=ab730e34%2D46a5%2D4eb7%2D81c8%2D674345fb39b1&persistVariables=CurATC,CurBID,JobListID,jobsListKey,JobID&lid=51632810038&rmuh=2DCB20B6BD826484BE54615CEEADC2DA49C26AD6"
-          }
-          target="_blank"
-        >
+        <a href={data.link} target="_blank">
           <Button className="mt-[16px] rounded-full font-[600] text-[13px]">
             Visiter le site de l&apos;offre
           </Button>
@@ -35,7 +31,9 @@ export default function Sidebar() {
           Type de contrat
         </span>
         <span className="block mt-2 font-mona text-base font-medium leading-[22px]">
-          Contrat à durée déterminée (CDD)
+          {data.type === "CDD"
+            ? "Contrat à durée déterminée (CDD)"
+            : "Contrat à durée indéterminée (CDI)"}
         </span>
       </div>
 
@@ -44,7 +42,7 @@ export default function Sidebar() {
           Lieu d&apos;affectation
         </span>
         <span className="block mt-2 font-mona text-base font-medium leading-[22px]">
-          Kolwezi
+          {data.city}
         </span>
       </div>
 
@@ -53,7 +51,7 @@ export default function Sidebar() {
           Date limite de dépôt des candidatures
         </span>
         <span className="block mt-2 font-mona text-base font-medium leading-[22px]">
-          24 Sept 2024
+          {data.endDate}
         </span>
       </div>
 
@@ -62,7 +60,7 @@ export default function Sidebar() {
           Nombre de poste vacant
         </span>
         <span className="block mt-2 font-mona text-base font-medium leading-[22px]">
-          1
+          {data.vacantPost === 0 ? 1 : data.vacantPost}
         </span>
       </div>
 
@@ -71,7 +69,7 @@ export default function Sidebar() {
           Niveau du poste
         </span>
         <span className="block mt-2 font-mona text-base font-medium leading-[22px]">
-          Maitrise
+          {data.level}
         </span>
       </div>
     </div>

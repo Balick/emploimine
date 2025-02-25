@@ -10,4 +10,6 @@ export interface Job {
   description: string;
   type: string;
   company: string;
+  vacantPost: number;
+  level: string;
 }
