@@ -89,6 +89,8 @@ async function extractJobData(page: Page) {
         company: "Glencore",
         type: "CDI",
         description: "",
+        vacantPost: 0,
+        level: "-",
       };
     });
   });
