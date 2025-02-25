@@ -1,7 +1,7 @@
 "use server";
 
 //import { scrapeGlencoreJob } from "../scraper";
-import { scrapeGlencoreJobs } from "../scraper/scraper";
+import { scrapeGlencoreJobs } from "../scraper/glencore-jobs";
 
 export async function scrapeAndStoreJob() {
   try {

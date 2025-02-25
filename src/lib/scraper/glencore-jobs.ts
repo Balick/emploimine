@@ -1,4 +1,6 @@
-import puppeteer, { Page } from "puppeteer-core";
+import { Job } from "@/types";
+import pLimit from "p-limit";
+import puppeteer, { Browser, Page } from "puppeteer-core";
 
 const URL = "https://www.glencore.com/careers/career-opportunities/africa";
 const BROWSER_WS = `wss://${process.env.BRIGHT_DATA_USERNAME}:${process.env.BRIGHT_DATA_PASSWORD}@brd.superproxy.io:9222`;
@@ -28,11 +30,18 @@ export async function scrapeGlencoreJobs() {
         job.location.toLowerCase().includes("république démocratique du congo")
     );
 
+    console.log("📝 Extraction des détails de chaque offre...");
+    const detailedJobs = await getJobDetails(browser, drcJobs);
+
     console.log(
-      `✅ Offres en RDC extraites : ${JSON.stringify(drcJobs, null, 2)}`
+      `✅ Offres détaillées extraites : ${JSON.stringify(
+        detailedJobs,
+        null,
+        2
+      )}`
     );
 
-    return drcJobs;
+    return detailedJobs;
   } catch (error) {
     console.error("❌ Une erreur s'est produite lors du scraping :", error);
     throw error; // Rélève l'erreur pour que la fonction appelante puisse la gérer
@@ -68,8 +77,62 @@ async function extractJobData(page: Page) {
       const region = locationParts[1] || "";
       const country = locationParts[2] || "";
 
-      return { title, location, date, endDate, link, city, region, country };
+      return {
+        title,
+        location,
+        date,
+        endDate,
+        link,
+        city,
+        region,
+        country,
+        company: "Glencore",
+        type: "CDI",
+        description: "",
+      };
     });
   });
   return jobs;
+}
+
+async function getJobDetails(browser: Browser, jobs: Job[]): Promise<Job[]> {
+  // Limite le nombre de pages ouvertes simultanément
+  const limit = pLimit(5); // Ajuste ce nombre en fonction de tes ressources
+
+  const promises = jobs.map((job) =>
+    limit(async () => {
+      try {
+        const page = await browser.newPage();
+        await page.goto(job.link, {
+          waitUntil: "networkidle2",
+          timeout: 60000,
+        });
+
+        // Attente du chargement de la description
+        await page.waitForSelector("#main section.section.container", {
+          timeout: 30000,
+        });
+
+        // Extraction de la description du poste
+        const description = await page.evaluate(() => {
+          return document.querySelector("div.prose")?.innerHTML || "";
+        });
+
+        await page.close(); // Ferme la page pour libérer les ressources
+
+        return { ...job, description };
+      } catch (error) {
+        console.error(
+          `⚠️ Erreur lors de l'extraction des détails pour ${job.title}:`,
+          error
+        );
+        return job; // Retourne le job sans la description en cas d'erreur
+      }
+    })
+  );
+
+  // Attend que toutes les promesses soient résolues
+  const detailedJobs = await Promise.all(promises);
+
+  return detailedJobs;
 }

@@ -44,7 +44,7 @@ export default async function Posts() {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5 overflow-hidden">
-                    <span>Glencore</span>
+                    <span>{post.company}</span>
                     <h4 className="leading-[13px] font-semibold text-nowrap truncate overflow-hidden">
                       {post.title}
                     </h4>
