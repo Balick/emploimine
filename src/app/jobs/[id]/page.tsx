@@ -6,9 +6,9 @@ import { ChevronLeft } from "lucide-react";
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 
-export default async function Page({ params }: { params: { job: string } }) {
-  noStore(); // Désactive le cache pour la page
-  const data = await getOffer(params.job);
+export default async function Page({ params }: { params: { id: string } }) {
+  noStore();
+  const data = await getOffer(params.id);
 
   return (
     <main className="min-h-screen main py-10">
