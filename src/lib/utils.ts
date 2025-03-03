@@ -5,7 +5,28 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Ajout de la fonction pour calculer le temps écoulé
+export function getLogo(company: string, big?: boolean) {
+  if (big) {
+    switch (company) {
+      case "glencore":
+        return "/Glencore_logo.svg";
+      case "kamoto copper company":
+        return "/kcc-logo.jpeg";
+      default:
+        return "/Glencore_logo.svg";
+    }
+  }
+
+  switch (company) {
+    case "glencore":
+      return "/glencore.webp";
+    case "kamoto copper company":
+      return "/kcc-logo-2.jpeg";
+    default:
+      return "/glencore.webp";
+  }
+}
+
 export function getElapsedTime(postDate: string): string {
   try {
     // Supposons que postDate est au format "DD/MM/YYYY"
