@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
     <div className="min-h-[90vh] flex flex-col items-center justify-center">
-      <h1 className="font-sourceRegular lg:text-[72px] text-5xl text-center mx-auto max-w-[732px] leading-[55px] lg:leading-[65px]">
+      <h1 className="font-sourceRegular lg:text-[72px] text-3xl md:text-5xl text-center mx-auto max-w-[732px] md:leading-[55px] lg:leading-[65px]">
         La plateforme #1 de recherche d&apos;emploi spécialisé dans le secteur
         minier en RDC.
       </h1>
