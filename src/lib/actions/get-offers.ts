@@ -8,12 +8,18 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-export async function getOffers() {
+export async function getOffers(querty?: string) {
   try {
-    const { data: offers, error } = await supabase
+    let supabaseQuery = supabase
       .from("offers")
       .select("*")
       .order("date", { ascending: false });
+
+    if (querty) {
+      supabaseQuery = supabaseQuery.ilike("title", `%${querty}%`);
+    }
+
+    const { data: offers, error } = await supabaseQuery;
 
     if (error) throw error;
 

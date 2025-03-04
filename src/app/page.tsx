@@ -3,7 +3,15 @@ import SearchBar from "@/components/searchbar";
 import Posts from "@/components/posts";
 import Aside from "@/components/aside";
 
-export default function Home() {
+export default async function Home(props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
+
   return (
     <main className="main pb-20">
       <Hero />
@@ -11,7 +19,7 @@ export default function Home() {
         <Aside />
         <div className="lg:w-[65%] top-0">
           <SearchBar />
-          <Posts />
+          <Posts query={query} />
         </div>
       </div>
     </main>
