@@ -2,6 +2,7 @@
 
 import { Search } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { Input } from "./ui/input";
 
@@ -20,10 +21,24 @@ export default function SearchBar() {
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
+  const scrollToSearch = () => {
+    document.getElementById("form")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  useEffect(() => {
+    if (searchParams.has("query")) {
+      scrollToSearch();
+    }
+  }, []);
+
   return (
     <form id="form" className="h-[48px] relative">
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
       <Input
+        onFocus={scrollToSearch}
         defaultValue={searchParams.get("query")?.toString()}
         onChange={(e) => handleSearch(e.target.value)}
         placeholder="Chercher par emploi, entreprise..."
