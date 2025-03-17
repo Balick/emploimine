@@ -4,6 +4,7 @@ import { contrat, items } from "@/constants";
 import { useSearchContext } from "@/context/search-context";
 import { getElapsedTime, getLogo } from "@/lib/utils";
 import { Dot, MapPin } from "lucide-react";
+import { unstable_noStore } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -47,6 +48,7 @@ interface Post {
 }
 
 export default function FilteredOffers({ data }: { data: Post[] }) {
+  unstable_noStore();
   const { term, filters } = useSearchContext();
 
   const filteredData = data.filter((post) => {
