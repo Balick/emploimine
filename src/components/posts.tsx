@@ -4,7 +4,7 @@ import Offers from "./offers";
 import PostsSkeleton from "./postsSkeleton";
 import { Button } from "./ui/button";
 
-export default async function Posts({ query }: { query: string }) {
+export default async function Posts() {
   return (
     <section>
       <div className="flex items-center justify-between my-[40px]">
@@ -20,7 +20,7 @@ export default async function Posts({ query }: { query: string }) {
         </Button>
       </div>
       <Suspense fallback={<PostsSkeleton />}>
-        <Offers query={query} />
+        <Offers />
       </Suspense>
     </section>
   );
