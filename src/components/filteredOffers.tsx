@@ -51,29 +51,39 @@ export default function FilteredOffers({ data }: { data: Post[] }) {
   unstable_noStore();
   const { term, filters } = useSearchContext();
 
-  const filteredData = data.filter((post) => {
-    // Filtre par recherche
-    const matchesTerm = post.title.toLowerCase().includes(term.toLowerCase());
+  const filteredData = data
+    .filter((post) => {
+      // Filtre par recherche
+      const matchesTerm = post.title.toLowerCase().includes(term.toLowerCase());
 
-    // Filtre par entreprise
-    const companyMatch =
-      filters.companies.length === 0 ||
-      items.some(
-        (item) =>
-          item.label === post.company && filters.companies.includes(item.id)
-      );
+      // Filtre par entreprise
+      const companyMatch =
+        filters.companies.length === 0 ||
+        items.some(
+          (item) =>
+            item.label === post.company && filters.companies.includes(item.id)
+        );
 
-    // Filtre par type de contrat
-    const contratMatch =
-      filters.contrat.length === 0 ||
-      contrat.some(
-        (c) =>
-          c.id === post.type.toLocaleLowerCase() &&
-          filters.contrat.includes(c.id)
-      );
+      // Filtre par type de contrat
+      const contratMatch =
+        filters.contrat.length === 0 ||
+        contrat.some(
+          (c) =>
+            c.id === post.type.toLocaleLowerCase() &&
+            filters.contrat.includes(c.id)
+        );
 
-    return matchesTerm && companyMatch && contratMatch;
-  });
+      return matchesTerm && companyMatch && contratMatch;
+    })
+    .sort((a, b) => {
+      // Conversion spécifique pour dd/mm/yyyy
+      const parseDate = (dateStr: string) => {
+        const [day, month, year] = dateStr.split("/").map(Number);
+        return new Date(year, month - 1, day).getTime();
+      };
+
+      return parseDate(b.date) - parseDate(a.date);
+    });
 
   return filteredData.length > 0 ? (
     <ul className="flex flex-col gap-4 min-h-[646px]">
