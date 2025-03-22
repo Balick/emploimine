@@ -10,6 +10,26 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+export async function deleteExpiredOffers() {
+  const today = new Date().toISOString().split("T")[0];
+
+  try {
+    // Suppression des offres avec endDate antérieur à aujourd'hui
+    const { data, error } = await supabase
+      .from("offers")
+      .delete()
+      .lt("endDate", today);
+
+    return { data, error };
+  } catch (error) {
+    console.error(
+      "Erreur lors de la suppression des offres expirées:",
+      // @ts-expect-error - Erreur de type
+      error.message
+    );
+  }
+}
+
 export async function scrapeAndStoreJob() {
   try {
     // Récupération des offres depuis le site

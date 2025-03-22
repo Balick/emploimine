@@ -7,7 +7,7 @@ export default function Hero() {
       </h1>
       <p className="font-mona text-center mt-[16px] max-w-[732px] mx-auto text-xl leading-[24px] text-[#3d3d4e]">
         Simplifiez votre recherche d&apos;emploi dans le secteur minier. Notre
-        plateforme vous propose des milliers &apos;offres ciblées, classées et
+        plateforme vous propose des milliers d&apos;offres ciblées, classées et
         mises à jour régulièrement.
       </p>
     </div>
