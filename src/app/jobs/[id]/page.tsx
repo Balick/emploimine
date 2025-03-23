@@ -3,8 +3,39 @@ import Sidebar from "@/components/sidebar";
 import { Button } from "@/components/ui/button";
 import { getOffer } from "@/lib/actions/get-offers";
 import { ChevronLeft } from "lucide-react";
+import type { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const data = await getOffer(params.id);
+
+  const formattedDate = new Date(data.endDate).toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  return {
+    title: `${data.title} - ${data.company} | EmploiMine`,
+    description: `Poste de ${data.title} chez ${data.company}. Offre à pourvoir avant le ${formattedDate}`,
+    openGraph: {
+      title: `${data.title} - ${data.company} | EmploiMine`,
+      description: `Poste de ${data.title} chez ${data.company}. Offre à pourvoir avant le ${formattedDate}`,
+      type: "website",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/jobs/${params.id}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${data.title} - ${data.company} | EmploiMine`,
+      description: `Poste de ${data.title} chez ${data.company}. Offre à pourvoir avant le ${formattedDate}`,
+    },
+  };
+}
 
 export default async function Page({ params }: { params: { id: string } }) {
   noStore();
@@ -26,7 +57,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <h1 className="leading-[29px] md:leading-[38px] font-bold text-[24px] md:text-[32px] font-mona">
             {data.title}
           </h1>
-          <ShareButtons />
+          <ShareButtons id={data.id} />
 
           <div
             dangerouslySetInnerHTML={{ __html: data.description }}

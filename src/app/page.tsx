@@ -5,7 +5,16 @@ import Offers from "@/components/offers";
 import PostsSkeleton from "@/components/postsSkeleton";
 import SearchBar from "@/components/searchbar";
 import { SearchProvider } from "@/context/search-context";
+import type { Metadata } from "next";
 import { Suspense } from "react";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "EmploiMine | Offres d'emploi dans le secteur minier",
+    description:
+      "Recherchez des offres d'emploi en république démocratique du Congo dans le secteur minier",
+  };
+}
 
 export default async function Home() {
   return (

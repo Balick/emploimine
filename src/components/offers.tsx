@@ -7,5 +7,38 @@ export default async function Offers() {
   unstable_noStore();
   const data = await getOffers();
 
-  return data.length > 0 ? <FilteredOffers data={data} /> : <EmptyContent />;
+  // Get the current date
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0); // Set time to the beginning of the day for accurate comparison
+
+  const filteredData = data.filter((offer) => {
+    // Remove offers with empty descriptions
+    if (!offer.description) {
+      return false;
+    }
+
+    // Check if endDate is present
+    if (!offer.endDate) {
+      return true; // Keep offers without an end date
+    }
+
+    try {
+      // Parse the endDate string (dd/mm/yyyy)
+      const [day, month, year] = offer.endDate.split("/");
+      const expiryDate = new Date(`${year}-${month}-${day}`);
+      expiryDate.setHours(0, 0, 0, 0); // Set time to the beginning of the day for accurate comparison
+
+      // Compare expiryDate with currentDate
+      return expiryDate >= currentDate; // Keep offers where expiryDate is today or in the future
+    } catch (error) {
+      console.error("Error parsing or comparing date:", error);
+      return true; // Keep offers if there's an error parsing the date to avoid losing data
+    }
+  });
+
+  return data.length > 0 ? (
+    <FilteredOffers data={filteredData} />
+  ) : (
+    <EmptyContent />
+  );
 }

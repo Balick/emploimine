@@ -5,13 +5,13 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
 
-export default function ShareButtons() {
+export default function ShareButtons({ id }: { id: string }) {
   const url = window.location.href;
   const [isCopied, setIsCopied] = React.useState(false);
 
   const handleShare = (platform: string) => {
     let shareUrl = "";
-    const encodedUrl = encodeURIComponent(url);
+    const encodedUrl = `https://emploimine.vercel.app/jobs/${id}`;
     const windowFeatures =
       "width=600,height=400,menubar=no,toolbar=no,location=no,resizable=yes,scrollbars=yes,status=no";
 
