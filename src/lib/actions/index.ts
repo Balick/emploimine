@@ -69,6 +69,34 @@ export async function scrapeAndStoreJob() {
     if (insertError) throw insertError;
 
     console.log(`✅ ${newJobs.length} nouvelles offres enregistrées.`);
+
+    const { data: newOffers, error: selectNewOffersError } = await supabase
+      .from("offers")
+      .select("*");
+
+    if (selectNewOffersError) throw selectNewOffersError;
+
+    // Récupération les adresses email
+    const { data: emailsData, error: selectEmailsError } = await supabase
+      .from("emails")
+      .select("email");
+
+    if (selectEmailsError) throw selectEmailsError;
+
+    // Créer un tableau avec les adresses email
+    const emails = emailsData.map((email) => email.email);
+
+    // Envoyer les emails
+    newOffers.forEach(async (job) => {
+      const emailContent = await generateEmailBody({
+        id: job.id,
+        title: job.title,
+        company: job.company,
+        url: `https://emploimine.vercel.app/jobs/${job.id}`,
+      });
+      await sendEmail(emailContent, emails);
+    });
+
     return newJobs;
   } catch (error) {
     console.error(
