@@ -13,3 +13,21 @@ export interface Job {
   vacantPost: number;
   level: string;
 }
+
+export type NotificationType =
+  | "WELCOME"
+  | "CHANGE_OF_STOCK"
+  | "LOWEST_PRICE"
+  | "THRESHOLD_MET";
+
+export type EmailContent = {
+  subject: string;
+  body: string;
+};
+
+export type EmailOfferInfo = {
+  title: string;
+  url: string;
+  company: string;
+  id: string;
+};

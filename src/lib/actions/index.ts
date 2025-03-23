@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@supabase/supabase-js";
+import { generateEmailBody, sendEmail } from "../nodemailer";
 import { scrapeGlencoreJobs } from "../scraper/glencore-jobs";
 import { scrapeKCCJobs } from "../scraper/kcc-jobs";
 
@@ -76,5 +77,43 @@ export async function scrapeAndStoreJob() {
     );
     // @ts-expect-error - Erreur de type
     throw new Error(`Échec de la mise à jour des offres: ${error.message}`);
+  }
+}
+
+export async function addUserEmail(email: string) {
+  try {
+    // verify if email already exists in the database
+    const { data, error } = await supabase
+      .from("emails")
+      .select("email")
+      .eq("email", email);
+
+    if (error) {
+      console.error("Erreur lors de la vérification de l'email:", error);
+      return "Une erreur s'est produite lors de la vérification de l'email.";
+    }
+
+    if (data.length > 0) {
+      console.log("L'email est déjà inscrit.");
+      return "Vous êtes déjà inscrit à la newsletter.";
+    }
+
+    // Add user email
+    const { error: insertError } = await supabase
+      .from("emails")
+      .insert({ email });
+
+    if (insertError) {
+      console.error("Erreur lors de l'ajout de l'email:", insertError);
+      return "Une erreur s'est produite lors de l'ajout de l'email.";
+    }
+
+    // send first email
+    const emailContent = await generateEmailBody();
+    await sendEmail(emailContent, [email]);
+
+    return "Vous êtes inscrit à la newsletter !";
+  } catch (error) {
+    console.error("Erreur lors de l'ajout de l'email à la newsletter:", error);
   }
 }

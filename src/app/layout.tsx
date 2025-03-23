@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { Toaster } from "@/components/ui/sonner";
 
 const sourceSerifProRegular = localFont({
   src: "./fonts/SourceSerifPro-Regular.ttf",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${sourceSerifProRegular.variable} ${monaSans.variable} antialiased`}
       >
+        <Toaster />
         <Header />
         {children}
         <Footer />
