@@ -21,8 +21,8 @@ export async function generateEmailBody(offer?: EmailOfferInfo) {
     body = `
       <div>
         <h4>Nouvelle offre disponible !</h4>
-        <p>L'entreprise ${offer.company} recrute, pour le poste ${offer.title}
-        \n.Cliquez <a href="https://emploimine.vercel.app/jobs/${offer.id}" target="_blank" rel="noopener noreferrer">ici</a> pour voir l'offre.
+        <p>L'entreprise ${offer.company} recrute, pour le poste <b>${offer.title}</b></p>
+        <p>Cliquez <a href="https://emploimine.vercel.app/jobs/${offer.id}" target="_blank" rel="noopener noreferrer">ici</a> pour voir l'offre.
         </p>
       </div>
     `;

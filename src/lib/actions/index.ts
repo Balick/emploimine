@@ -62,19 +62,14 @@ export async function scrapeAndStoreJob() {
     }
 
     // Insertion des nouvelles offres
-    const { error: insertError } = await supabase
+    const { data: insertedJobs, error: insertError } = await supabase
       .from("offers")
-      .upsert(newJobs, { onConflict: "link" });
+      .upsert(newJobs, { onConflict: "link" })
+      .select("*");
 
     if (insertError) throw insertError;
 
     console.log(`✅ ${newJobs.length} nouvelles offres enregistrées.`);
-
-    const { data: newOffers, error: selectNewOffersError } = await supabase
-      .from("offers")
-      .select("*");
-
-    if (selectNewOffersError) throw selectNewOffersError;
 
     // Récupération les adresses email
     const { data: emailsData, error: selectEmailsError } = await supabase
@@ -87,7 +82,7 @@ export async function scrapeAndStoreJob() {
     const emails = emailsData.map((email) => email.email);
 
     // Envoyer les emails
-    newOffers.forEach(async (job) => {
+    insertedJobs.forEach(async (job) => {
       const emailContent = await generateEmailBody({
         id: job.id,
         title: job.title,
@@ -96,6 +91,8 @@ export async function scrapeAndStoreJob() {
       });
       await sendEmail(emailContent, emails);
     });
+
+    console.log("✅ Les emails ont été envoyés.");
 
     return newJobs;
   } catch (error) {
