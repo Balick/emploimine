@@ -40,6 +40,10 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD,
   },
   maxConnections: 1,
+  secure: true,
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
 export const sendEmail = async (
@@ -61,4 +65,12 @@ export const sendEmail = async (
       console.log("Email sent: ", info);
     }
   );
+
+  transporter.verify(function (error, success) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Server is ready to take our messages", success);
+    }
+  });
 };
