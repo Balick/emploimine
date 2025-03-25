@@ -47,7 +47,13 @@ interface Post {
   city: string;
 }
 
-export default function FilteredOffers({ data }: { data: Post[] }) {
+export default function FilteredOffers({
+  data,
+  isOld,
+}: {
+  data: Post[];
+  isOld?: boolean;
+}) {
   unstable_noStore();
   const { term, filters } = useSearchContext();
 
@@ -97,7 +103,7 @@ export default function FilteredOffers({ data }: { data: Post[] }) {
             className="hover:bg-[#fefbfe] py-5 px-[10px] border border-[#f1f1f1] rounded-lg hover:shadow-sm transition-all duration-300"
           >
             <Link
-              href={`/jobs/${post.id}`}
+              href={isOld ? `/jobs/old/${post.id}` : `/jobs/${post.id}`}
               className="flex items-center gap-2 justify-between"
             >
               <div className="flex items-center w-[100%] md:w-[75%]">

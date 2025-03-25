@@ -1,9 +1,16 @@
 import { getLogo } from "@/lib/utils";
 import { Job } from "@/types";
+import clsx from "clsx";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
-export default function Sidebar({ data }: { data: Job }) {
+export default function Sidebar({
+  data,
+  isOld,
+}: {
+  data: Job;
+  isOld?: boolean;
+}) {
   const logo = getLogo(data.company.toLowerCase(), true);
 
   return (
@@ -15,7 +22,7 @@ export default function Sidebar({ data }: { data: Job }) {
         <span className="font-mona leading-[29px] font-bold text-[24px] text-center hidden">
           {data.company}
         </span>
-        <a href={data.link} target="_blank">
+        <a href={data.link} target="_blank" className={clsx(isOld && "hidden")}>
           <Button className="mt-[16px] rounded-full font-[600] text-[13px]">
             Visiter le site de l&apos;offre
           </Button>
