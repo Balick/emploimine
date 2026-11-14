@@ -1,0 +1,49 @@
+{
+  "count": 6,
+  "next": "https://www.careers-page.com/api/v1.0/c/gladys-synergies/jobs/?page=2&page_size=20",
+  "previous": null,
+  "results": [
+    {
+      "id": 4534856,
+      "hash": "638X5RW5",
+      "position_name": "Load and Haul Superintendent, Kolwezi, DRC – M/F",
+      "description": "<h1><strong>Load and Haul Superintendent, Kolwezi, DRC – M/F</strong></h1>\n<h3><strong>Context:</strong></h3>\n<p>Gladys Synergies is recruiting on behalf of an international mining company operating in the Democratic Republic of Congo.</p>\n<p>The company is seeking an experienced Load and Haul Superintendent to reorganise, strengthen and improve its loading and hauling operations. The successful candidate will be responsible for driving daily production performance, optimising equipment utilisation, managing operational teams and coordinating mining contractors to ensure safe, efficient and cost-effective operations.</p>\n<p>This position plays a critical role in achieving production targets, improving fleet performance, establishing effective dispatching and ensuring a consistent supply of material to support processing operations.</p>\n<h3><strong>Summary:</strong></h3>\n<ul><li><p><strong>Job Reference:&nbsp;﻿</strong>638X5RW5</p></li><li><p><strong>Contract Type:</strong> Permanent</p></li><li><p><strong>Sector:</strong> Mining – Copper</p></li><li><p><strong>Work Location:</strong> Kolwezi, DRC</p></li><li><p><strong>Start Date:</strong> ASAP</p></li><li><p><strong>Salary:</strong> Competitive package, according to experience</p></li></ul>\n<p>[…]</p>",
+      "country": "Republic of the Congo",
+      "state": "",
+      "city": "Kolwezi",
+      "address": "",
+      "zipcode": "",
+      "location_display": "Kolwezi, Republic of the Congo",
+      "is_salary_visible": false,
+      "is_pinned_in_career_page": false
+    },
+    {
+      "id": 3201810,
+      "hash": "8XYV9V4R",
+      "position_name": "Project Manager IT (Banques) - Kinshasa / RDC",
+      "description": "<p><strong>Informations Générales :</strong></p>\n<p>Job Reference :&nbsp;﻿8XYV9V4R</p>\n<p>Titre : Project Manager IT (Banques) - Kinshasa (H/F)</p>\n<p>Principale mission : Vous serez chargé de la modernisation des plateformes de banque en ligne et mobile, ainsi que le développement et l'intégration de nouveaux systèmes internes</p>\n<p>Type de contrat : CDI</p>\n<p>Secteur : Bancaire</p>\n<p>Lieu de travail : Kinshasa, RDC</p>\n<p>Capacité : Temps plein</p>\n<p>Salaire : Selon l'expérience</p>\n<p><strong>Société / Background :</strong></p>\n<p>Notre client, une banque majeure en RDC, recherche un Project Manager IT pour son bureau de Kinshasa.</p>\n<p>[…]</p>",
+      "country": "Republic of the Congo",
+      "state": "",
+      "city": "Kinshasa",
+      "address": "",
+      "zipcode": "",
+      "location_display": "Kinshasa, Republic of the Congo",
+      "is_salary_visible": false,
+      "is_pinned_in_career_page": false
+    },
+    {
+      "id": 4569191,
+      "hash": "5W799Y85",
+      "position_name": "Administrateur Réseaux et Systèmes (H/F)",
+      "description": "<p><strong>Administrateur Réseaux et Systèmes (H/F)</strong></p>\n<p><strong>Informations Générales :</strong></p>\n<ul><li>Job Reference : 5W799Y85</li></ul><ul><li>Titre : Administrateur Réseaux et Systèmes (H/F)</li></ul>\n<ul><li>Principales missions : Concevoir, déployer et maintenir les réseaux des clients et assurer les projets et le support auprès des comptes PME/PMI</li></ul><ul><li>Type de contrat : Permanent / CDI </li></ul>\n<ul><li>Secteur : Infogérance</li></ul>\n<ul><li>Lieu de travail : 77183 Croissy-Beaubourg, France</li></ul>\n<ul><li>Capacité : Temps plein</li></ul>\n<ul><li>Salaire : Selon expérience</li></ul>\n<ul><li>Avantages : Ticket restaurant, mutuelle entreprise, plan d'épargne entreprise, prime annuel</li></ul>\n<p><strong>Société / Background :</strong></p>\n<p>[…]</p>",
+      "country": "France",
+      "state": "",
+      "city": "Croissy-Beaubourg",
+      "address": "",
+      "zipcode": "",
+      "location_display": "Croissy-Beaubourg, France",
+      "is_salary_visible": false,
+      "is_pinned_in_career_page": false
+    }
+  ]
+}
