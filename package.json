@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Plateforme open source qui agrège les offres d’emploi du secteur minier en RDC.",
+  "license": "MIT",
   "engines": {
     "node": ">=20.9.0"
   },

@@ -109,3 +109,8 @@ L'ancienne version stockait les dates en texte (`jj/mm/aaaa`) dans les tables `o
 ## Contribuer
 
 Toutes les contributions sont bienvenues : voir [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Licence
+
+[MIT](LICENSE) : vous pouvez utiliser, modifier et redistribuer le code librement, en
+conservant la mention de copyright.
