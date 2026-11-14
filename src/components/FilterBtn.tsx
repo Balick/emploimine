@@ -2,14 +2,18 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ListFilter } from "lucide-react";
-import FormFilter from "./FormContent";
+import FormFilter, { type FilterOption } from "./FormContent";
 
-export default function FilterButton() {
+export default function FilterButton(props: {
+  companies: FilterOption[];
+  contracts: FilterOption[];
+}) {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -21,11 +25,14 @@ export default function FilterButton() {
           Filtrer
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col items-center justify-center gap-4">
+      <SheetContent className="flex flex-col gap-4 overflow-y-auto">
         <SheetHeader className="mb-4">
           <SheetTitle>Filtrer</SheetTitle>
+          <SheetDescription className="sr-only">
+            Filtrer les offres par entreprise et type de contrat
+          </SheetDescription>
         </SheetHeader>
-        <FormFilter />
+        <FormFilter {...props} />
       </SheetContent>
     </Sheet>
   );

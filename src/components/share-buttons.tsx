@@ -1,70 +1,59 @@
 "use client";
 
-import { ClipboardCheck, Link } from "lucide-react";
+import { ClipboardCheck, Link as LinkIcon } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 
-export default function ShareButtons({ id }: { id: string }) {
-  const url = window.location.href;
-  const [isCopied, setIsCopied] = React.useState(false);
+const buttonClass =
+  "flex items-center gap-1.5 rounded-full border-[1.5px] font-semibold whitespace-nowrap border-[#e7e7e9] bg-white text-black hover:bg-white text-[13px] h-[40px] active:scale-105 transition-all duration-300";
 
-  const handleShare = (platform: string) => {
-    let shareUrl = "";
-    const encodedUrl = `https://emploimine.vercel.app/jobs/${id}`;
-    const windowFeatures =
-      "width=600,height=400,menubar=no,toolbar=no,location=no,resizable=yes,scrollbars=yes,status=no";
+export default function ShareButtons({ url, title }: { url: string; title: string }) {
+  const [isCopied, setIsCopied] = useState(false);
+  const encodedUrl = encodeURIComponent(url);
 
-    switch (platform) {
-      case "facebook":
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
-        break;
-      case "x":
-        shareUrl = `https://x.com/intent/tweet?url=${encodedUrl}`;
-        break;
-      default:
-        return;
-    }
+  const share = (shareUrl: string) =>
+    window.open(shareUrl, "_blank", "noopener,noreferrer,width=600,height=400");
 
-    window.open(shareUrl, "_blank", windowFeatures);
-  };
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(url);
+  const copy = async () => {
+    await navigator.clipboard.writeText(url);
     setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 3000);
+    setTimeout(() => setIsCopied(false), 3000);
   };
 
   return (
-    <div className="flex mt-[20px] gap-4">
+    <div className="flex flex-wrap mt-[20px] gap-4">
       <Button
-        onClick={() => handleShare("facebook")}
-        className="flex items-center gap-1.5 rounded-full border-[1.5px] font-semibold whitespace-nowrap border-[#e7e7e9] bg-white text-black hover:bg-white text-[13px] h-[40px] active:scale-105 transition-all duration-300"
+        onClick={() => share(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`)}
+        className={buttonClass}
+        aria-label="Partager sur Facebook"
       >
-        <Image src={"/facebook.png"} alt="Facebook" width={16} height={16} />
+        <Image src="/facebook.png" alt="" width={16} height={16} />
         <span>Partager</span>
       </Button>
 
       <Button
-        onClick={() => handleShare("x")}
-        className="flex items-center gap-1.5 rounded-full border-[1.5px] font-semibold whitespace-nowrap border-[#e7e7e9] bg-white text-black hover:bg-white text-[13px] h-[40px] active:scale-105 transition-all duration-300"
+        onClick={() =>
+          share(`https://x.com/intent/tweet?url=${encodedUrl}&text=${encodeURIComponent(title)}`)
+        }
+        className={buttonClass}
+        aria-label="Partager sur X"
       >
-        <Image src={"/x.png"} alt="X" width={16} height={16} />
+        <Image src="/x.png" alt="" width={16} height={16} />
         <span>Partager</span>
       </Button>
 
       <Button
-        onClick={handleCopy}
-        className="flex items-center gap-1.5 rounded-full border-[1.5px] font-semibold whitespace-nowrap border-[#e7e7e9] bg-white text-black hover:bg-white text-[13px] h-[40px] active:scale-105 transition-all duration-300"
+        onClick={() => share(`https://wa.me/?text=${encodeURIComponent(`${title} ${url}`)}`)}
+        className={buttonClass}
+        aria-label="Partager sur WhatsApp"
       >
-        {!isCopied ? (
-          <Link className="w-4 h-4" />
-        ) : (
-          <ClipboardCheck className="w-4 h-4" />
-        )}
-        <span>{isCopied ? "Copié" : "Copier"}</span>
+        <span>WhatsApp</span>
+      </Button>
+
+      <Button onClick={copy} className={buttonClass}>
+        {isCopied ? <ClipboardCheck className="w-4 h-4" aria-hidden /> : <LinkIcon className="w-4 h-4" aria-hidden />}
+        <span>{isCopied ? "Copié" : "Copier le lien"}</span>
       </Button>
     </div>
   );

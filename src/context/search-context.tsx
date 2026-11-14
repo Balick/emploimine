@@ -4,8 +4,7 @@ import { createContext, useCallback, useContext, useMemo, useState } from "react
 
 export type Filters = {
   companies: string[];
-  postsVacants: string[];
-  contrat: string[];
+  contracts: string[];
 };
 
 type SearchContextValue = {
@@ -16,7 +15,7 @@ type SearchContextValue = {
   resetFilters: () => void;
 };
 
-const EMPTY_FILTERS: Filters = { companies: [], postsVacants: [], contrat: [] };
+const EMPTY_FILTERS: Filters = { companies: [], contracts: [] };
 
 const SearchContext = createContext<SearchContextValue | null>(null);
 
