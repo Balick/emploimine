@@ -1,0 +1,30 @@
+name: Nouvelle source d'offres
+description: Proposer un site qui publie des offres d'emploi minières en RDC
+title: "[Source] "
+labels: ["source"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Entreprise ou site
+      placeholder: "ex. Tenke Fungurume Mining"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Page qui liste les offres
+      placeholder: "https://…"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Informations utiles
+      description: Lieux en RDC, fréquence des offres, logiciel de recrutement (Workday, SuccessFactors…), API repérée…
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: Je souhaite écrire cette source moi-même (voir CONTRIBUTING.md)

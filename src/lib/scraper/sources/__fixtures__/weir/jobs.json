@@ -1,0 +1,23 @@
+{
+  "total": 2,
+  "jobPostings": [
+    {
+      "title": "Business Development Manager",
+      "externalPath": "/job/Solwezi/Business-Development-Manager_R0038483",
+      "locationsText": "Solwezi",
+      "bulletFields": [
+        "Zambia"
+      ]
+    },
+    {
+      "title": "Service Technician",
+      "externalPath": "/job/Kolwezi/Service-Technician_R0039999",
+      "locationsText": "Kolwezi",
+      "bulletFields": [
+        "Congo, Democratic Republic of the"
+      ]
+    }
+  ],
+  "facets": [],
+  "userAuthenticated": false
+}

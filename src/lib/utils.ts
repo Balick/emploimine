@@ -1,150 +1,59 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { drcDate } from "./dates";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getLogo(company: string, big?: boolean) {
-  if (big) {
-    switch (company) {
-      case "glencore":
-        return "/Glencore_logo.svg";
-      case "kamoto copper company":
-        return "/kcc-logo.jpeg";
-      default:
-        return "/Glencore_logo.svg";
-    }
-  }
-
-  switch (company) {
-    case "glencore":
-      return "/glencore.webp";
-    case "kamoto copper company":
-      return "/kcc-logo-2.jpeg";
-    default:
-      return "/glencore.webp";
-  }
+/** Parse a `YYYY-MM-DD` date (or ISO timestamp) as a UTC date. */
+function toDate(value: string): Date {
+  return new Date(value.length === 10 ? `${value}T00:00:00Z` : value);
 }
 
-export function getElapsedTime(postDate: string): string {
-  try {
-    // Supposons que postDate est au format "DD/MM/YYYY"
-    const [day, month, year] = postDate.split("/").map(Number);
-    const date = new Date(year, month - 1, day);
-    const now = new Date();
-
-    const diffInDays = Math.floor(
-      (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24)
-    );
-
-    if (isNaN(diffInDays)) return "Date inconnue";
-    if (diffInDays === 0) return "Aujourd'hui";
-    if (diffInDays === 1) return "Hier";
-    if (diffInDays < 7) return `Il y a ${diffInDays} jours`;
-    if (diffInDays < 30) return `Il y a ${Math.floor(diffInDays / 7)} semaines`;
-    if (diffInDays < 365) return `Il y a ${Math.floor(diffInDays / 30)} mois`;
-    return `Il y a ${Math.floor(diffInDays / 365)} ans`;
-  } catch (error) {
-    console.error("Erreur lors de la conversion de la date", error);
-    return "Date inconnue";
-  }
+/** "14 novembre 2026" */
+export function formatDate(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const date = toDate(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 }
 
-export function formatDateKCCJobDate(dateString: string): string {
-  if (!dateString) {
-    return "";
+/** "14/11/2026" */
+export function formatShortDate(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const date = toDate(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("fr-FR", { timeZone: "UTC" });
+}
+
+/**
+ * Relative time in French: "Aujourd'hui", "Hier", "Il y a 3 jours"…
+ * Days are counted in DRC time. Pass `today` (YYYY-MM-DD) computed on the
+ * server so that the server render and the hydration agree.
+ */
+export function getElapsedTime(value: string | null | undefined, today: string = drcDate()): string {
+  if (!value) return "Date inconnue";
+  const date = toDate(value);
+  if (Number.isNaN(date.getTime())) return "Date inconnue";
+
+  // A plain date is already a calendar day; a timestamp is read in DRC time.
+  const day = value.length === 10 ? value : drcDate(date);
+  const days = Math.round((Date.parse(`${today}T00:00:00Z`) - Date.parse(`${day}T00:00:00Z`)) / 86_400_000);
+
+  if (days <= 0) return "Aujourd'hui";
+  if (days === 1) return "Hier";
+  if (days < 7) return `Il y a ${days} jours`;
+  if (days < 30) {
+    const weeks = Math.floor(days / 7);
+    return `Il y a ${weeks} semaine${weeks > 1 ? "s" : ""}`;
   }
+  if (days < 365) return `Il y a ${Math.floor(days / 30)} mois`;
+  const years = Math.floor(days / 365);
+  return `Il y a ${years} an${years > 1 ? "s" : ""}`;
+}
 
-  const moisMapping: Record<string, string> = {
-    "janv.": "01",
-    "févr.": "02",
-    mars: "03",
-    "avr.": "04",
-    mai: "05",
-    juin: "06",
-    "juil.": "07",
-    août: "08",
-    "sept.": "09",
-    "oct.": "10",
-    "nov.": "11",
-    "déc.": "12",
-    jan: "01",
-    feb: "02",
-    mar: "03",
-    apr: "04",
-    may: "05",
-    jun: "06",
-    jul: "07",
-    aug: "08",
-    sep: "09",
-    oct: "10",
-    nov: "11",
-    dec: "12",
-    "jan,": "01",
-    "feb,": "02",
-    "mar,": "03",
-    "apr,": "04",
-    "jun,": "06",
-    "jul,": "07",
-    "aug,": "08",
-    "sep,": "09",
-    "oct,": "10",
-    "nov,": "11",
-    "dec,": "12",
-    january: "01",
-    february: "02",
-    march: "03",
-    april: "04",
-    may_long: "05",
-    june: "06",
-    july: "07",
-    august: "08",
-    september: "09",
-    october: "10",
-    november: "11",
-    december: "12",
-  };
-
-  const moisMappingNormalise: Record<string, string> = Object.keys(
-    moisMapping
-  ).reduce((acc, key) => {
-    const normalizedKey = key.toLowerCase().replace(/[.,\s]*$/g, "");
-    // @ts-expect-error - Les clés de l'objet sont des chaînes
-    acc[normalizedKey] = moisMapping[key];
-    return acc;
-  }, {});
-
-  let jour: string, moisNom: string, annee: string;
-  let parts: string[];
-
-  if (dateString.includes(",")) {
-    parts = dateString.split(/[\s,]+/);
-    if (parts.length !== 3) {
-      return dateString;
-    }
-    // Tentative de gérer "Jour Mois,Année" en plus de "Mois Jour,Année"
-    if (isNaN(Number(parts[0])) && !isNaN(Number(parts[1]))) {
-      // Si le premier élément n'est pas un nombre mais le deuxième l'est, on assume "Mois Jour,Année" (comportement précédent)
-      [moisNom, jour, annee] = parts;
-    } else {
-      // Sinon, on assume "Jour Mois,Année" (nouveau format)
-      [jour, moisNom, annee] = parts;
-    }
-  } else {
-    const match = dateString.match(/^(\d{1,2})\s*([^\d\s]+)\s*(\d{4})$/);
-    if (!match) {
-      return dateString;
-    }
-    [, jour, moisNom, annee] = match;
-  }
-
-  const moisNomNormalise = moisNom.toLowerCase().replace(/[.,\s]*$/g, "");
-  const mois = moisMappingNormalise[moisNomNormalise];
-
-  if (!mois) {
-    return dateString;
-  }
-
-  return `${jour.padStart(2, "0")}/${mois}/${annee}`;
+/** Date used to sort and display "posted …": publication date, else first time we saw it. */
+export function postedAt(offer: { published_at: string | null; first_seen_at: string }): string {
+  return offer.published_at ?? offer.first_seen_at;
 }

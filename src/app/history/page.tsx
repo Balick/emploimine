@@ -1,42 +1,21 @@
-import Aside from "@/components/aside";
-import FilterButton from "@/components/FilterBtn";
-import OldOffers from "@/components/old-offers";
+import OfferBrowser from "@/components/offer-browser";
 import PostsSkeleton from "@/components/postsSkeleton";
-import SearchBar from "@/components/searchbar";
-import { SearchProvider } from "@/context/search-context";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "EmploiMine | Historique des offres d'emploi",
-    description:
-      "Recherchez les anciennes offres d'emploi en république démocratique du Congo",
-  };
-}
+export const metadata: Metadata = {
+  title: "Historique des offres d'emploi",
+  description:
+    "Les offres d'emploi du secteur minier en RDC qui ne sont plus disponibles : utile pour connaître les entreprises qui recrutent et les profils recherchés.",
+  alternates: { canonical: "/history" },
+};
 
-export default async function Home() {
+export default function History() {
   return (
-    <SearchProvider>
-      <main className="main pb-20 py-14">
-        <div>
-          <Aside />
-          <div className="lg:w-[65%] top-0">
-            <SearchBar />
-            <section>
-              <div className="flex items-center justify-between my-[40px]">
-                <h1 className="font-mona font-bold leading-[24px] text-lg">
-                  Historique des offres d&apos;emploi
-                </h1>
-                <FilterButton />
-              </div>
-              <Suspense fallback={<PostsSkeleton />}>
-                <OldOffers />
-              </Suspense>
-            </section>
-          </div>
-        </div>
-      </main>
-    </SearchProvider>
+    <main className="main pb-20 py-14">
+      <Suspense fallback={<PostsSkeleton />}>
+        <OfferBrowser variant="past" title="Historique des offres d'emploi" headingLevel="h1" />
+      </Suspense>
+    </main>
   );
 }

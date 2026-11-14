@@ -1,0 +1,63 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 3909605,
+      "hash": "3W6Y7758",
+      "position_name": "Condition Monitoring Technician / Technicien Monitoring Conditionnel",
+      "description": "<h5>Te<strong></strong>chnicien Monitoring Conditionnel</h5>\n<p><strong>Lieu :</strong> RDC (Basé sur site)&nbsp;</p>\n<p><strong>Type d'emploi :</strong> Contrat de 24 mois&nbsp;</p>\n<p></p>\n<h5><strong>À propos du poste</strong></h5>\n<p>Nous recherchons un <strong>Technicien Monitoring Conditionnel expérimenté</strong> pour collecter et analyser les données des machines de l'usine à travers des tests de vibration, thermographie, analyse sonore et enregistrements de courant de charge. Le candidat sera chargé de documenter les inspections, d'assurer la validité des données pour analyse, d'assister les ingénieurs fiabilité dans le diagnostic des problèmes, et de réaliser des contrôles spécialisés tels que l'alignement laser, le suivi thermographique et les tests non destructifs.</p>\n<h3>Condition Monitoring Technician</h3>\n<p><strong>Location:</strong> DRC (Site-Based)&nbsp;</p>\n<p><strong>Employment Type:</strong> 24-month Contract&nbsp;</p>\n<p>[…]</p>",
+      "country": "Republic of the Congo",
+      "state": "",
+      "city": "Kolwezi",
+      "address": "",
+      "zipcode": "",
+      "location_display": "Kolwezi, Republic of the Congo",
+      "is_salary_visible": false,
+      "is_pinned_in_career_page": false
+    },
+    {
+      "id": 4581917,
+      "hash": "3W73X748",
+      "position_name": "Opérateur de Foreuse de Production (Solo)",
+      "description": "<p>Offre d'emploi : <strong>Opérateur de Foreuse de Production (Solo)</strong></p>\n<p>Lieu :<strong>Kamoto, RDC – Exploitation minière souterrain</strong>e</p>\n<p>Type de contrat :Contrat</p>\n<p></p>\n<p><strong>À propos du poste</strong></p>\n<p>Nous recherchons des <strong>Opérateurs de Foreuse Solo&nbsp;</strong>expérimentés pour réaliser les opérations de forage de production souterraine tout en garantissant la précision, la sécurité et la performance des équipements.</p>\n<p>[…]</p>",
+      "country": "",
+      "state": "",
+      "city": "",
+      "address": "",
+      "zipcode": "",
+      "location_display": "",
+      "is_salary_visible": false,
+      "is_pinned_in_career_page": false
+    },
+    {
+      "id": 4578631,
+      "hash": "5W79X4V3",
+      "position_name": "DRC Operations Coordinator",
+      "description": "<h1><strong>DRC Operations Coordinator</strong></h1>\n<p> <strong>Location:</strong> Kolwezi, Democratic Republic of Congo (DRC)</p>\n<p> <strong>Company:</strong> KILELE SARL</p>\n<h2><strong>About the Role</strong></h2>\n<p>We are seeking an experienced, organised, and results-driven <strong>DRC Operations Coordinator</strong> to join our Operations Department in Kolwezi, Democratic Republic of Congo.</p>\n<p>[…]</p>",
+      "country": "Republic of the Congo",
+      "state": "",
+      "city": "Kolwezi",
+      "address": "",
+      "zipcode": "",
+      "location_display": "Kolwezi, Republic of the Congo",
+      "is_salary_visible": false,
+      "is_pinned_in_career_page": false
+    },
+    {
+      "id": 9999999,
+      "hash": "BRAZZA01",
+      "position_name": "Hand-edited: Brazzaville copy (not DRC)",
+      "description": "<h3>Structural Engineer</h3>\n<p>Hand-edited fixture item: same board, located in Brazzaville (Republic of the Congo).</p>",
+      "country": "Republic of the Congo",
+      "state": "",
+      "city": "Brazzaville",
+      "address": "",
+      "zipcode": "",
+      "location_display": "Brazzaville, Republic of the Congo",
+      "is_salary_visible": false,
+      "is_pinned_in_career_page": false
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+name: Scrape job offers
+
+on:
+  schedule:
+    # Every 6 hours, at an off-peak minute (GitHub delays jobs scheduled at :00).
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      source:
+        description: "Source id(s) to scrape, comma separated (empty = all)"
+        required: false
+      dry-run:
+        description: "Only print the offers, do not store them"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# Never run two scrapes at the same time.
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    # Forks have no secrets: only run on the main repository.
+    if: github.repository == 'Balick/emploimine'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Scrape
+        # Inputs go through env vars, never interpolated into the script.
+        run: |
+          args=()
+          if [ -n "$INPUT_SOURCE" ]; then args+=("--source=$INPUT_SOURCE"); fi
+          if [ "$INPUT_DRY_RUN" = "true" ]; then args+=("--dry-run"); fi
+          npm run scrape -- "${args[@]}"
+        env:
+          INPUT_SOURCE: ${{ inputs.source }}
+          INPUT_DRY_RUN: ${{ inputs.dry-run }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}

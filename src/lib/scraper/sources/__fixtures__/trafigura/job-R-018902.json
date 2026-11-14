@@ -1,0 +1,39 @@
+{
+  "jobPostingInfo": {
+    "id": "7db2f59df67810020775e2a689c30000",
+    "title": "Supervisor Comercial",
+    "jobDescription": "<p>Catalina Huanca Sociedad Minera SAC, empresa del grupo Trafigura con operaciones en la región Ayacucho, se encuentra en la búsqueda de un(a) Supervisor Comercial.</p><br /><p>Objetivo: Controlar las actividades de comercialización, transportes y valorización de concentrados polimetálicos (zinc y plomo).</p>",
+    "location": "Lima, Peru",
+    "postedOn": "Offre publiée hier",
+    "startDate": "2026-11-13",
+    "timeType": "Temps Plein",
+    "jobReqId": "R-018902",
+    "jobPostingId": "Supervisor-Comercial_R-018902",
+    "jobPostingSiteId": "TrafiguraCareerSite",
+    "country": {
+      "descriptor": "Pérou",
+      "id": "0eb156ca580c4db786a7894bdaa77450"
+    },
+    "canApply": true,
+    "posted": true,
+    "includeResumeParsing": false,
+    "jobRequisitionLocation": {
+      "descriptor": "Lima - Mining Office",
+      "country": {
+        "descriptor": "Pérou",
+        "id": "0eb156ca580c4db786a7894bdaa77450",
+        "alpha2Code": "PE"
+      }
+    },
+    "externalUrl": "https://trafigura.wd3.myworkdayjobs.com/TrafiguraCareerSite/job/Lima-Peru/Supervisor-Comercial_R-018902",
+    "timeLeftToApply": "Il reste plus de 30 jours pour postuler",
+    "endDate": "2026-12-31",
+    "jobPostingEndDateAsText": "Date de fin : 31 décembre 2026"
+  },
+  "hiringOrganization": {
+    "name": "",
+    "url": ""
+  },
+  "similarJobs": [],
+  "userAuthenticated": false
+}

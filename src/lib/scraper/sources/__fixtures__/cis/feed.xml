@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HAND-EDITED fixture (2026-11-14): CIS had 0 DRC offers that day. Channel header copied from the real Rss_JobCountry=158 feed (see feed-empty.xml); the item is the real offer 2026-1290 from the Cote d'Ivoire feed (Rss_JobCountry=65), description truncated. Its offer page (offer-1290.html) was edited to a DRC location. -->
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Export RSS des offres - Seulement les offres à la une : Non / Pays : Afrique--&gt;Rép démocratique du Congo</title>
+    <link>https://cis-career.talent-soft.com/handlers/offerRss.ashx?LCID=1036&amp;Rss_JobCountry=158</link>
+    <description />
+    <language>fr-FR</language>
+    <item>
+      <link>https://career.cis-integratedservices.com/Pages/Offre/detailoffre.aspx?idOffre=1290&amp;idOrigine=502&amp;LCID=1036&amp;offerReference=2026-1290</link>
+      <category>Contrat à durée indéterminée (CDI)</category>
+      <category>40 C AVENUE DE HAMBOURG   13008 MARSEILLE</category>
+      <title>2026-1290 - RAF - Responsable Administratif et Financier Pays</title>
+      <description>&lt;b&gt;Contrat : &lt;/b&gt;Contrat à durée indéterminée (CDI)&lt;br /&gt;
+&lt;b&gt;Description du poste : &lt;/b&gt;&lt;br /&gt;
+Objectifs : Dans un contexte de structuration et de sécurisation des activités de deux filiales en Côte d’Ivoire,le Directeur Administratif et Financier pilote l’ensemble des fonctions finance, comptabilité, trésorerie, fiscalité, paie et contrôle de gestion. Il garantit la fiabilité des comptes, la conformité réglementaire, la maîtrise des risques et l’optimisation du cash, tout en accompagnant les projets de transformation juridique et organisationnelle des entités.
+
+[…]&lt;br /&gt;
+</description>
+      <pubDate>Thu, 22 Oct 2026 15:31:21 Z</pubDate>
+    </item>
+  </channel>
+</rss>

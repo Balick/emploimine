@@ -1,59 +1,57 @@
 "use client";
 
-import { addUserEmail } from "@/lib/actions";
+import { subscribe } from "@/app/actions/newsletter";
 import { LoaderCircle, Mail, Send } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { type FormEvent, useState, useTransition } from "react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-export default function NewsLetter() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export default function NewsLetter({ id }: { id: string }) {
   const [email, setEmail] = useState("");
+  const [pending, startTransition] = useTransition();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // vérifier si l'email est valide à l'aide d'une expression régulière
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast("L'adresse email est invalide.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    try {
-      // Add user email
-      const message = await addUserEmail(email);
-      setIsSubmitting(false);
-      setEmail("");
-      toast(message);
-    } catch (error) {
-      console.error("Erreur lors de l'abonnement à la newsletter.", error);
-    }
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    startTransition(async () => {
+      try {
+        const result = await subscribe(email);
+        if (result.ok) {
+          setEmail("");
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch {
+        toast.error("Impossible de vous inscrire pour le moment.");
+      }
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="h-[48px] relative w-[300px]">
-      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
+    <form onSubmit={handleSubmit} className="h-[48px] relative w-[300px] max-w-full">
+      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4 z-10" aria-hidden />
       <Input
+        id={id}
+        type="email"
+        autoComplete="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        disabled={isSubmitting}
+        disabled={pending}
         required
         placeholder="Entrez votre email"
-        className="absolute inset-0 pl-10 pr-14 rounded-full text-[16px] h-full w-full border-2 focus:border-[#ffbef1] ring ring-transparent focus:ring-[#fbe8f7] hover:ring-[#fbe8f7] transition-all duration-300"
+        className="absolute inset-0 pl-10 pr-14 rounded-full text-[16px] h-full w-full border-2 focus:border-[#ffbef1] ring-3 ring-transparent focus:ring-[#fbe8f7] hover:ring-[#fbe8f7] transition-all duration-300"
       />
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={pending}
+        aria-label="S'inscrire à la newsletter"
         className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground rounded-full px-3 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isSubmitting ? (
-          <LoaderCircle className="w-4 h-4 text-[#ffbef1] animate-spin" />
+        {pending ? (
+          <LoaderCircle className="w-4 h-4 text-[#ffbef1] animate-spin" aria-hidden />
         ) : (
-          <Send className="w-4 h-4 text-[#ffbef1]" />
+          <Send className="w-4 h-4 text-[#ffbef1]" aria-hidden />
         )}
       </Button>
     </form>

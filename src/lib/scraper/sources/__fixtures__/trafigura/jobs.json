@@ -1,0 +1,25 @@
+{
+  "total": 2,
+  "jobPostings": [
+    {
+      "title": "Logistics Operations Support",
+      "externalPath": "/job/Lubumbashi-Congo-Democratic-Republic-of-the/Logistics-Operations-Support_R-017679",
+      "locationsText": "Lubumbashi, Congo, Democratic Republic of the",
+      "postedOn": "Posted 30+ Days Ago",
+      "bulletFields": [
+        "R-017679"
+      ]
+    },
+    {
+      "title": "Supervisor Comercial",
+      "externalPath": "/job/Lima-Peru/Supervisor-Comercial_R-018902",
+      "locationsText": "Lima, Peru",
+      "postedOn": "Posted Yesterday",
+      "bulletFields": [
+        "R-018902"
+      ]
+    }
+  ],
+  "facets": [],
+  "userAuthenticated": false
+}
