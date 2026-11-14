@@ -13,17 +13,16 @@ type SearchContextValue = {
   updateTerm: (term: string) => void;
   filters: Filters;
   updateFilter: (name: keyof Filters, value: string[]) => void;
+  resetFilters: () => void;
 };
+
+const EMPTY_FILTERS: Filters = { companies: [], postsVacants: [], contrat: [] };
 
 const SearchContext = createContext<SearchContextValue | null>(null);
 
 export function SearchProvider({ children }: { children: React.ReactNode }) {
   const [term, setTerm] = useState("");
-  const [filters, setFilters] = useState<Filters>({
-    companies: [],
-    postsVacants: [],
-    contrat: [],
-  });
+  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
 
   const updateFilter = useCallback(
     (name: keyof Filters, value: string[]) =>
@@ -31,9 +30,11 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
+  const resetFilters = useCallback(() => setFilters(EMPTY_FILTERS), []);
+
   const value = useMemo(
-    () => ({ term, updateTerm: setTerm, filters, updateFilter }),
-    [term, filters, updateFilter]
+    () => ({ term, updateTerm: setTerm, filters, updateFilter, resetFilters }),
+    [term, filters, updateFilter, resetFilters]
   );
 
   return (
