@@ -98,7 +98,7 @@ export default function FilteredOffers({
         return (
           <li
             key={index}
-            className="hover:bg-[#fefbfe] py-5 px-[10px] border border-[#f1f1f1] rounded-lg hover:shadow-sm transition-all duration-300"
+            className="hover:bg-[#fefbfe] py-5 px-[10px] border border-[#f1f1f1] rounded-lg hover:shadow-xs transition-all duration-300"
           >
             <Link
               href={isOld ? `/jobs/old/${post.id}` : `/jobs/${post.id}`}

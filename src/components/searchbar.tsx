@@ -14,7 +14,7 @@ export default function SearchBar() {
         defaultValue={term}
         onChange={(e) => updateTerm(e.target.value)}
         placeholder="Chercher par emploi, entreprise..."
-        className="absolute inset-0 pl-10 rounded-xl text-[16px] h-full w-full border-2 focus:border-[#ffbef1] ring ring-transparent focus:ring-[#fbe8f7] hover:ring-[#fbe8f7] transition-all duration-300"
+        className="absolute inset-0 pl-10 rounded-xl text-[16px] h-full w-full border-2 focus:border-[#ffbef1] ring-3 ring-transparent focus:ring-[#fbe8f7] hover:ring-[#fbe8f7] transition-all duration-300"
       />
     </form>
   );

@@ -43,7 +43,7 @@ export default function NewsLetter() {
         disabled={isSubmitting}
         required
         placeholder="Entrez votre email"
-        className="absolute inset-0 pl-10 pr-14 rounded-full text-[16px] h-full w-full border-2 focus:border-[#ffbef1] ring ring-transparent focus:ring-[#fbe8f7] hover:ring-[#fbe8f7] transition-all duration-300"
+        className="absolute inset-0 pl-10 pr-14 rounded-full text-[16px] h-full w-full border-2 focus:border-[#ffbef1] ring-3 ring-transparent focus:ring-[#fbe8f7] hover:ring-[#fbe8f7] transition-all duration-300"
       />
       <Button
         type="submit"
