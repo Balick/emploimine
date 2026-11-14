@@ -1,10 +1,10 @@
 import { getOffers } from "@/lib/actions/get-offers";
-import { unstable_noStore } from "next/cache";
+import { connection } from "next/server";
 import EmptyContent from "./empty-content";
 import FilteredOffers from "./filteredOffers";
 
 export default async function OldOffers() {
-  unstable_noStore();
+  await connection();
   const data = await getOffers();
 
   // Get the current date

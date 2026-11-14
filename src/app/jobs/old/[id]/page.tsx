@@ -3,15 +3,16 @@ import { Button } from "@/components/ui/button";
 import { getOffer } from "@/lib/actions/get-offers";
 import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
-import { unstable_noStore as noStore } from "next/cache";
+import { connection } from "next/server";
 import Link from "next/link";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const data = await getOffer(params.id);
+  const { id } = await params;
+  const data = await getOffer(id);
 
   const formattedDate = new Date(data.endDate).toLocaleDateString("fr-FR", {
     day: "numeric",
@@ -26,7 +27,7 @@ export async function generateMetadata({
       title: `${data.title} - ${data.company} | EmploiMine`,
       description: `Poste de ${data.title} chez ${data.company}. Offre à pourvoir avant le ${formattedDate}`,
       type: "website",
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/jobs/${params.id}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/jobs/${id}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -36,9 +37,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-  noStore();
-  const data = await getOffer(params.id);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  await connection();
+  const { id } = await params;
+  const data = await getOffer(id);
 
   return (
     <main className="min-h-screen main py-10">

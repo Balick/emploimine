@@ -12,7 +12,6 @@ async function extractJobData(page: Page) {
     const jobRows = Array.from(document.querySelectorAll(".data-row"));
     return jobRows.map((row) => {
       const cells = row.querySelectorAll("td");
-      // @ts-expect-error - Les cellules peuvent être nulles
       const [titleCell, locationCell, dateCell] = cells;
 
       const title = titleCell.querySelector("span.jobTitle")?.textContent?.trim() || "";

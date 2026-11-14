@@ -4,7 +4,6 @@ import { contrat, items } from "@/constants";
 import { useSearchContext } from "@/context/search-context";
 import { getElapsedTime, getLogo } from "@/lib/utils";
 import { Dot, MapPin } from "lucide-react";
-import { unstable_noStore } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -54,7 +53,6 @@ export default function FilteredOffers({
   data: Post[];
   isOld?: boolean;
 }) {
-  unstable_noStore();
   const { term, filters } = useSearchContext();
 
   const filteredData = data
@@ -108,7 +106,7 @@ export default function FilteredOffers({
             >
               <div className="flex items-center w-[100%] md:w-[75%]">
                 <div className="w-[46px] h-[46px] rounded-[4px] mr-4 relative overflow-hidden flex-none">
-                  <Image src={logo} alt="Logo" fill objectFit="cover" />
+                  <Image src={logo} alt="Logo" fill sizes="46px" className="object-cover" />
                 </div>
                 <div className="flex flex-col gap-1.5 overflow-hidden">
                   <span>{post.company}</span>

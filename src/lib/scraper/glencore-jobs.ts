@@ -58,7 +58,6 @@ async function extractJobData(page: Page) {
     return jobRows.map((row) => {
       // Sélection des cellules dans la rangée actuelle
       const cells = row.querySelectorAll("td");
-      // @ts-expect-error - Les cellules peuvent être nulles
       const [titleCell, locationCell, dateCell, endDateCell] = cells;
 
       const title =
