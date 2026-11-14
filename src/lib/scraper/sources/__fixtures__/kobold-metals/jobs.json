@@ -1,0 +1,149 @@
+{
+  "jobs": [
+    {
+      "absolute_url": "https://job-boards.greenhouse.io/koboldmetalsdrc/jobs/4685023005",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4430488005,
+      "location": {
+        "name": "Remote"
+      },
+      "metadata": null,
+      "id": 4685023005,
+      "updated_at": "2026-10-14T17:32:44-04:00",
+      "requisition_id": "301",
+      "title": "Data Scientist",
+      "company_name": "KoBold Metals DRC",
+      "first_published": "2026-04-14T17:25:18-04:00",
+      "language": "en",
+      "application_deadline": null,
+      "content": "&lt;h3&gt;Data Scientist&lt;/h3&gt;\n&lt;h5&gt;&lt;strong&gt;About the company&lt;/strong&gt;&lt;/h5&gt;\n&lt;p&gt;In the coming decades, demand for critical minerals such as copper, lithium, and cobalt will continue to grow. These minerals are needed to build electric infrastructure, vehicles, data centers, and electronics. However, the mining industry is making 10x fewer discoveries per dollar spent on exploration compared to 30 years ago because the easy-to-find, near surface deposits have largely been discovered.&lt;/p&gt;\n&lt;p&gt;KoBold was founded to be the first AI native mineral explora&lt;/p&gt;",
+      "departments": [
+        {
+          "id": 4001834005,
+          "name": "Data Science",
+          "child_ids": [],
+          "parent_id": null
+        }
+      ],
+      "offices": [
+        {
+          "id": 4000760005,
+          "name": "North America",
+          "location": "North America",
+          "child_ids": [],
+          "parent_id": null
+        }
+      ],
+      "ai_disclaimer": "<p>We use Greenhouse’s AI-powered Talent Matching tool to compare your application against our job requirements.</p>",
+      "include_ai_disclaimer": false,
+      "ai_opt_out_request_url": "http://app5.greenhouse.io/ai_opt_out_request/job_post/4685023005/ai_opt_out"
+    },
+    {
+      "absolute_url": "https://job-boards.greenhouse.io/koboldmetalsdrc/jobs/4743174005",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4450129005,
+      "location": {
+        "name": "Manono, DRC"
+      },
+      "metadata": null,
+      "id": 4743174005,
+      "updated_at": "2026-10-14T17:32:45-04:00",
+      "requisition_id": "345",
+      "title": "Drilling Superintendent",
+      "company_name": "KoBold Metals DRC",
+      "first_published": "2026-10-13T10:27:55-04:00",
+      "language": "en",
+      "application_deadline": null,
+      "content": "&lt;p&gt;&lt;strong&gt;Drilling Superintendent, DRC&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;About the Company&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;In the coming decades, demand for critical minerals such as copper, lithium, and cobalt will continue to grow. These minerals are needed to build electric infrastructure, vehicles, data centers, and electronics. However, the mining industry is making 10x fewer discoveries per dollar spent on exploration compared to 30 years ago because the easy-to-find, near surface deposits have largely been discovered.&lt;/p&gt;\n&lt;p&gt;KoBold was &lt;/p&gt;",
+      "departments": [
+        {
+          "id": 4035700005,
+          "name": "Field Operations",
+          "child_ids": [],
+          "parent_id": null
+        }
+      ],
+      "offices": [
+        {
+          "id": 4000760005,
+          "name": "North America",
+          "location": "North America",
+          "child_ids": [],
+          "parent_id": null
+        }
+      ],
+      "ai_disclaimer": "<p>We use Greenhouse’s AI-powered Talent Matching tool to compare your application against our job requirements.</p>",
+      "include_ai_disclaimer": false,
+      "ai_opt_out_request_url": "http://app5.greenhouse.io/ai_opt_out_request/job_post/4743174005/ai_opt_out"
+    },
+    {
+      "absolute_url": "https://job-boards.greenhouse.io/koboldmetalsdrc/jobs/4721406005",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "education": "education_optional",
+      "internal_job_id": 4448159005,
+      "location": {
+        "name": "Lubumbashi"
+      },
+      "metadata": null,
+      "id": 4721406005,
+      "updated_at": "2026-10-14T17:32:44-04:00",
+      "requisition_id": "341",
+      "title": "HR Lead, DRC",
+      "company_name": "KoBold Metals DRC",
+      "first_published": "2026-08-05T05:17:29-04:00",
+      "language": "en",
+      "application_deadline": null,
+      "content": "&lt;p&gt;&lt;strong&gt;HR Lead&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;About the company:&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;In the coming decades, demand for critical minerals such as copper, lithium, and cobalt will continue to grow. These minerals are needed to build electric infrastructure, vehicles, data centers, and electronics. However, the mining industry is making 10x fewer discoveries per dollar spent on exploration compared to 30 years ago because the easy-to-find, near surface deposits have largely been discovered.&lt;/p&gt;\n&lt;p&gt;KoBold was founded to be the fi&lt;/p&gt;",
+      "departments": [
+        {
+          "id": 4140913005,
+          "name": "Human Resources",
+          "child_ids": [],
+          "parent_id": null
+        }
+      ],
+      "offices": [
+        {
+          "id": 4000760005,
+          "name": "North America",
+          "location": "North America",
+          "child_ids": [],
+          "parent_id": null
+        }
+      ],
+      "ai_disclaimer": "<p>We use Greenhouse’s AI-powered Talent Matching tool to compare your application against our job requirements.</p>",
+      "include_ai_disclaimer": false,
+      "ai_opt_out_request_url": "http://app5.greenhouse.io/ai_opt_out_request/job_post/4721406005/ai_opt_out"
+    }
+  ],
+  "meta": {
+    "total": 9
+  }
+}
