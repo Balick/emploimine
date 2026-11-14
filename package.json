@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "scrape": "tsx scripts/scrape.ts"
+    "scrape": "tsx scripts/scrape.ts",
+    "migrate:legacy": "tsx scripts/migrate-legacy.ts"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.4.1",
