@@ -1,0 +1,9 @@
+# Keep LF everywhere: scraper fixtures are compared byte for byte.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.ttf binary
+*.woff binary
